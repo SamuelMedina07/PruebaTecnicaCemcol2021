@@ -1,0 +1,43 @@
+a {
+    color: inherit;
+    text-decoration: none;
+}
+a:hover{
+color: orange;
+}
+article{
+
+}
+
+.card{
+    display: flex;
+    background-color: dimgray;
+    justify-content: flex-start;
+    width: 70%;
+    height: 50%;
+    margin-top: 5px ;
+    color: white;
+    border-radius: 15px;
+}
+
+img {
+    padding: 5px;
+    width: 250px;
+    height: 250px;
+  }
+
+  .card_title{
+    margin-left: 2%;
+    width: 100%;
+  }
+
+  .img_estado{
+    width: 10px;
+    height: 10px;
+  }
+
+.card_text{
+    display: inline-flex; /* Hace que los elementos estén alineados en fila */
+    align-items: center; /* Centra verticalmente la imagen y el texto */
+    gap: 5px;
+}
