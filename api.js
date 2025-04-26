@@ -17,41 +17,6 @@ const URL = 'https://rickandmortyapi.com/api/character/';
         return data; // Directly returns the data
     }
 
-    /* async function ObtenerPrimeraVezVisto(link) {
-        const respuesta = await fetch(link);
-        const data = await respuesta.json();
-        console.log(data.name);
-        return data.name;
-    } */
-
-      /*   function ObtenerPrimeraVezVisto(link) {
-            const resultado = fetch(link);
-            resultado
-                .then(respuesta => respuesta.json())
-                .then(datos => {
-                    return datos.name; // Se usa dentro de una función de flecha con llaves
-                });
-        } */
-
-               /*  function ObtenerPrimeraVezVisto(link) {
-                    const resultado = fetch(link);
-                    resultado
-                        .then(respuesta => respuesta.json())
-                        .then(datos => {
-                            let hola = datos.name
-                            return hola; // Se usa dentro de una función de flecha con llaves
-                        });
-                } */
-                
-
-  /*   ObtenerPersonajes().then(ans => {
-        document.getElementById('nombre').innerHTML = ans.name;
-        document.getElementById('estado').innerHTML = ans.status;
-        document.getElementById('especie').innerHTML = " - " + ans.species;
-        document.getElementById('foto').src = ans.image;
-    }); */
-    
-
 function aleatorio(){
     let numero = Math.floor(Math.random()*826);
     return numero;
@@ -79,7 +44,7 @@ async function ObtenerPrimeraVezVisto(link) {
 function generarCards(data,episodio) {
     const contenedor = document.getElementById('miContenedor'); // Contenedor principal
     contenedor.innerHTML = ''; // Limpiar contenido previo
-   // personajeEpisode.forEach(elemento => console.log(elemento));
+
     data.forEach((personaje,index) => {
         // Crear el div para la card
         const card = document.createElement('div');
@@ -117,25 +82,6 @@ function generarCards(data,episodio) {
         contenedor.appendChild(card);
     });
 }
-
-/* const personajesData = [];
-const personajeEpisode =[];
-let cantidad_cartas = 7
-for (let i = 0; i < cantidad_cartas; i++) {
-    ObtenerPersonajes().then(ans=>{
-        personajesData.push(ans);
-
-        ObtenerPrimeraVezVisto(ans.episode)
-        .then(nombre => {
-          personajeEpisode.push(nombre);
-        });
-       
-
-        if (personajesData.length === cantidad_cartas) { // Esperar a que se carguen los 4
-            generarCards(personajesData,personajeEpisode);// Llamar a generarCards
-        }
-    });
-} */
     const cantidad_cartas = 4;
 
     async function cargarYMostrarPersonajes() {
