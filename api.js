@@ -10,17 +10,42 @@ resultado
 
 const URL = 'https://rickandmortyapi.com/api/character/';
 
-
-    async function ObtenerPersonajes() {
-        const respuesta = await fetch(URL + aleatorio());
-        const data = await respuesta.json();
-        return data; // Directly returns the data
-    }
-
 function aleatorio(){
     let numero = Math.floor(Math.random()*826);
     return numero;
 }
+
+async function ObtenerPersonajes() {
+        const respuesta = await fetch(URL + aleatorio());
+        const data = await respuesta.json();
+        return data; // Directly returns the data
+ }
+
+async function ObtenerPrimeraVezVisto(link) {
+    const respuesta = await fetch(link);
+    const datos = await respuesta.json();
+    return datos.name;
+}
+
+const cantidad_cartas = 4;
+
+async function cargarYMostrarPersonajes() {
+    const personajesData = [];
+    const personajeEpisode = [];
+
+    for (let i = 0; i < cantidad_cartas; i++) {
+        const personaje = await ObtenerPersonajes(); // Esperamos cada personaje
+        personajesData.push(personaje);
+
+        const nombreEpisodio = await ObtenerPrimeraVezVisto(personaje.episode[0]); // primer episodio
+        personajeEpisode.push(nombreEpisodio);
+    }
+
+    generarCards(personajesData, personajeEpisode);
+}
+
+// Llamar a la función principal
+cargarYMostrarPersonajes();
 
 function EstadoColor(estado){
     switch(estado){
@@ -34,11 +59,7 @@ function EstadoColor(estado){
             return 0;
     }
 }
-async function ObtenerPrimeraVezVisto(link) {
-    const respuesta = await fetch(link);
-    const datos = await respuesta.json();
-    return datos.name;
-}
+
 // Uso fuera de la función:
 
 function generarCards(data,episodio) {
@@ -82,25 +103,7 @@ function generarCards(data,episodio) {
         contenedor.appendChild(card);
     });
 }
-    const cantidad_cartas = 4;
-
-    async function cargarYMostrarPersonajes() {
-        const personajesData = [];
-        const personajeEpisode = [];
-    
-        for (let i = 0; i < cantidad_cartas; i++) {
-            const personaje = await ObtenerPersonajes(); // Esperamos cada personaje
-            personajesData.push(personaje);
-    
-            const nombreEpisodio = await ObtenerPrimeraVezVisto(personaje.episode[0]); // primer episodio
-            personajeEpisode.push(nombreEpisodio);
-        }
-    
-        generarCards(personajesData, personajeEpisode);
-    }
-    
-    // Llamar a la función principal
-    cargarYMostrarPersonajes();
+  
     
 
 
